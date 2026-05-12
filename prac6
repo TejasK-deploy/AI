@@ -1,0 +1,97 @@
+# Simple Customer Support Chatbot using NLTK
+
+import nltk
+from nltk.chat.util import Chat, reflections
+
+pairs = [
+
+    [
+        r"my name is (.*)",
+        ["Hello %1, welcome to our customer support service."]
+    ],
+
+    [
+        r"hi|hello|hey",
+        ["Hello! How can I help you today?"]
+    ],
+
+    [
+        r"what is your name ?",
+        ["I am Customer Support Bot created using Python and NLTK."]
+    ],
+
+    [
+        r"how are you ?",
+        ["I am doing great. How can I assist you?"]
+    ],
+
+    [
+        r"(.*) product (.*)",
+        ["We provide laptops, mobiles, and electronic accessories."]
+    ],
+
+    [
+        r"(.*) price (.*)",
+        ["Please visit our official website for pricing details."]
+    ],
+
+    [
+        r"(.*) delivery (.*)",
+        ["Delivery usually takes 3 to 5 business days."]
+    ],
+
+    [
+        r"(.*) payment (.*)",
+        ["We support UPI, Debit Card, Credit Card, and Net Banking."]
+    ],
+
+    [
+        r"(.*) refund (.*)",
+        ["Refund will be processed within 5 working days."]
+    ],
+
+    [
+        r"(.*) location (.*)",
+        ["We are located in Pune, Maharashtra."]
+    ],
+
+    [
+        r"(.*) contact (.*)",
+        ["You can contact us at support@gmail.com"]
+    ],
+
+    [
+        r"sorry (.*)",
+        ["No problem.", "It's okay, please continue."]
+    ],
+
+    [
+        r"thanks|thank you",
+        ["You are welcome!", "Happy to help you."]
+    ],
+
+    [
+        r"quit",
+        ["Thank you for using our chatbot service."]
+    ],
+
+    [
+        r"(.*)",
+        ["Sorry, I did not understand your query."]
+    ]
+
+]
+
+
+def chatbot():
+    print("===================================")
+    print(" Customer Support Chatbot ")
+    print(" Type 'quit' to exit ")
+    print("===================================")
+
+    chat = Chat(pairs, reflections)
+    chat.converse()
+
+
+if __name__ == "__main__":
+    chatbot()
