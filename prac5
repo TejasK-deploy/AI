@@ -1,0 +1,71 @@
+# Graph Coloring Problem using Backtracking
+
+# Number of vertices
+V = 4
+
+# Graph represented using adjacency matrix
+graph = [
+    [0, 1, 1, 1],
+    [1, 0, 1, 0],
+    [1, 1, 0, 1],
+    [1, 0, 1, 0]
+]
+
+# Number of colors
+m = 3
+
+# Store colors assigned to vertices
+color = [0] * V
+
+
+# Function to check if color can be assigned
+def isSafe(v, graph, color, c):
+
+    for i in range(V):
+        if graph[v][i] == 1 and color[i] == c:
+            return False
+
+    return True
+
+
+# Backtracking function
+def graphColoringUtil(graph, m, color, v):
+
+    # If all vertices are assigned colors
+    if v == V:
+        return True
+
+    # Try different colors
+    for c in range(1, m + 1):
+
+        if isSafe(v, graph, color, c):
+
+            color[v] = c
+
+            # Recur for next vertex
+            if graphColoringUtil(graph, m, color, v + 1):
+                return True
+
+            # Backtrack
+            color[v] = 0
+
+    return False
+
+
+# Main function
+def graphColoring(graph, m):
+
+    if not graphColoringUtil(graph, m, color, 0):
+        print("Solution does not exist")
+        return False
+
+    print("Solution Exists:")
+    print("Assigned Colors are:")
+
+    for c in color:
+        print(c, end=" ")
+
+    return True
+
+
+graphColoring(graph, m)
